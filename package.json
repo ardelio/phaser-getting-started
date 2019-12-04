@@ -2,7 +2,7 @@
   "name": "phaser-getting-started",
   "version": "1.0.0",
   "description": "",
-  "private": true,
+  "main": "./src/index.ts",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
     "start": "webpack-dev-server --config webpack/base.js --open"
@@ -25,9 +25,5 @@
   },
   "dependencies": {
     "phaser": "^3.21.0"
-  },
-  "typeRoots": [
-    "./node_modules/phaser/types"
-  ],
-  "types": "Phaser"
+  }
 }
