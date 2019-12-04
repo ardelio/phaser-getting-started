@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "moduleResolution": "node",
-    "esModuleInterop": true
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*.ts"
   ]
 }
