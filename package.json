@@ -25,5 +25,9 @@
   },
   "dependencies": {
     "phaser": "^3.21.0"
-  }
+  },
+  "typeRoots": [
+    "./node_modules/phaser/types"
+  ],
+  "types": "Phaser"
 }
