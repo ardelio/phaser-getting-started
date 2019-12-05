@@ -31,7 +31,7 @@ export default class Demo extends Phaser.Scene {
   create() {
     this.add.image(400, 300, 'sky');
 
-    this.scoreText = this.add.text(16, 16, `score: ${this.score}`, { fontSize: '32px', fill: '#000' });
+    this.scoreText = this.add.text(16, 16, `Score: ${this.score}`, { fontSize: '32px', fill: '#000' });
 
     this.platforms = this.physics.add.staticGroup();
     this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
