@@ -11,9 +11,13 @@ const ASSETS = {
 export default class Demo extends Phaser.Scene {
   private platforms : Phaser.Physics.Arcade.StaticGroup;
   private player : Phaser.Physics.Arcade.Sprite;
+  private stars : Phaser.Physics.Arcade.Group;
+  private score: number;
+  private scoreText: Phaser.GameObjects.Text;
 
   constructor() {
     super('demo');
+    this.score = 0;
   }
 
   preload() {
@@ -26,6 +30,9 @@ export default class Demo extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, 'sky');
+
+    this.scoreText = this.add.text(16, 16, `score: ${this.score}`, { fontSize: '32px', fill: '#000' });
+
     this.platforms = this.physics.add.staticGroup();
     this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
     this.platforms.create(600, 400, 'ground')
@@ -57,6 +64,19 @@ export default class Demo extends Phaser.Scene {
     });
 
     this.physics.add.collider(this.player, this.platforms);
+
+    this.stars = this.physics.add.group({
+      key: 'star',
+      repeat: 11,
+      setXY: { x: 12, y: 0, stepX: 70 }
+    });
+
+    this.stars.children.iterate((child) => {
+      (child as Phaser.Physics.Arcade.Image).setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    });
+
+    this.physics.add.collider(this.stars, this.platforms);
+    this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
   }
 
   update() {
@@ -85,6 +105,11 @@ export default class Demo extends Phaser.Scene {
     {
       this.player.setVelocityY(-330);
     }
+  }
+
+  private collectStar (_: Phaser.Physics.Arcade.Sprite, star: Phaser.Physics.Arcade.Image) {
+    star.disableBody(true, true);
+    this.scoreText.setText(`Score: ${this.score += 10}`);
   }
 }
 
