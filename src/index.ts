@@ -1,12 +1,6 @@
 import Phaser from "phaser";
 
-const ASSETS = {
-  SKY: require("./assets/sky.png") as string,
-  STAR: require("./assets/star.png") as string,
-  PLATFORM: require("./assets/platform.png") as string,
-  BOMB: require("./assets/bomb.png") as string,
-  DUDE: require("./assets/dude.png") as string,
-};
+import { BOMB, DUDE, PLATFORM, SKY, STAR } from "./assets";
 
 export default class Demo extends Phaser.Scene {
   private platforms: Phaser.Physics.Arcade.StaticGroup;
@@ -21,11 +15,11 @@ export default class Demo extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("sky", ASSETS.SKY);
-    this.load.image("ground", ASSETS.PLATFORM);
-    this.load.image("star", ASSETS.STAR);
-    this.load.image("bomb", ASSETS.BOMB);
-    this.load.spritesheet("dude", ASSETS.DUDE, {
+    this.load.image("sky", SKY);
+    this.load.image("ground", PLATFORM);
+    this.load.image("star", STAR);
+    this.load.image("bomb", BOMB);
+    this.load.spritesheet("dude", DUDE, {
       frameWidth: 32,
       frameHeight: 48,
     });
